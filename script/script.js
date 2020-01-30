@@ -13,19 +13,27 @@ let foo = (function() {
     let number = Math.floor((Math.random() * 100) +1);
     console.log(number);
     return function bar () {
-        let userNamber = prompt('Угадай число от 1 до 100');
-        if(typeof(userNamber) !== isNaN && userNamber === '') {
-            userNamber = prompt('Введи число!');
-        } if (userNamber > number ) {
-            alert('Загаданное число меньше!');
-            bar();
-            
-        } if (userNamber < number) {
-            alert('Загаданное число больше!');
-            bar();
-            
-        }if (userNamber === number) {
-            confirm('Ты победил!');
+
+        let userNumber = prompt('Угадай число от 1 до 100');
+        if ( userNumber === null) {
+           alert('good bay');
+           return;
+        }
+        if(!isNumber(userNumber) ) {
+            userNumber = prompt('Введи число!');
+        } else {
+            userNumber = +userNumber;
+            if (userNumber > number ) {
+                alert('Загаданное число меньше!');
+                bar();
+                
+            } if (userNumber < number) {
+                alert('Загаданное число больше!');
+                bar();
+                
+            }if (userNumber === number) {
+                confirm('Ты победил!');
+            }
         }
        return bar();
     };
